@@ -29,7 +29,6 @@
                 </div>
                 <button class="w-full bg-red-600 text-white font-semibold py-2 rounded-lg hover:bg-red-700 transition">Login</button>
             </form>
-            <p class="text-sm text-center text-gray-500 mt-4">Belum punya akun? <a href="{{ route('register') }}" class="text-red-600 hover:underline">Daftar</a></p>
         </div>
     </div>
 </body>
