@@ -33,7 +33,7 @@
                         <td class="px-4 py-2">{{ $user->email }}</td>
                         <td class="px-4 py-2 capitalize">{{ $user->role }}</td>
                         <td class="px-4 py-2">
-                            <a href="{{ route('users.edit', $user) }}"
+                            <a href="{{ route('admin.users.edit', $user) }}"
                                class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded">
                                 Edit
                             </a>
@@ -43,7 +43,7 @@
                                 Delete
                             </button>
 
-                            <form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('users.destroy', $user) }}" style="display: none;">
+                            <form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('admin.users.destroy', $user) }}" style="display: none;">
                                 @csrf
                                 @method('DELETE')
                             </form>
@@ -58,7 +58,7 @@
             </table>
         </div>
 
-        @include('users.create')
+        @include('admin.users.create')
 
     </div>
 </div>

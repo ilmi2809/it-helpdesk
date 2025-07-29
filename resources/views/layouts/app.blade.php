@@ -6,23 +6,31 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
-<div class="flex h-screen">
-    @include('partials.sidebar')
-    @include('partials.navbar')
-</div>
+    <div class="flex h-screen overflow-hidden">
+        {{-- Sidebar --}}
+        @include('partials.sidebar')
 
-<script>
-    document.getElementById('userDropdownBtn')?.addEventListener('click', function () {
-        document.getElementById('userDropdownMenu')?.classList.toggle('hidden');
-    });
+        {{-- Main content --}}
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            @include('partials.navbar')
 
-    document.addEventListener('click', function (event) {
-        const btn = document.getElementById('userDropdownBtn');
-        const menu = document.getElementById('userDropdownMenu');
-        if (btn && menu && !btn.contains(event.target) && !menu.contains(event.target)) {
-            menu.classList.add('hidden');
-        }
-    });
-</script>
+    
+        </div>
+    </div>
+
+    {{-- Dropdown JS --}}
+    <script>
+        document.getElementById('userDropdownBtn')?.addEventListener('click', function () {
+            document.getElementById('userDropdownMenu')?.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function (event) {
+            const btn = document.getElementById('userDropdownBtn');
+            const menu = document.getElementById('userDropdownMenu');
+            if (btn && menu && !btn.contains(event.target) && !menu.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>

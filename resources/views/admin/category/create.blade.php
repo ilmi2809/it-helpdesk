@@ -1,7 +1,7 @@
 <div class="w-full lg:w-1/4 bg-white p-6 rounded shadow self-start">
     <h2 class="text-lg font-bold mb-4">Create Category</h2>
 
-    <form action="{{ route('categories.store') }}" method="POST" class="space-y-4">
+    <form action="{{ route('admin.categories.store') }}" method="POST" class="space-y-4">
         @csrf
         <div>
             <label class="block text-sm font-medium">New Category</label>

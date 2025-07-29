@@ -4,7 +4,7 @@
 <div class="container mx-auto p-1">
     <h1 class="text-2xl font-bold text-gray-800 mb-4">Tickets</h1>
     <div class="bg-white shadow p-6 rounded-lg">
-        <form method="GET" action="{{ route('tickets.index') }}">
+        <form method="GET" action="{{ route('admin.tickets.index') }}">
             <div class="flex justify-between items-center mb-4">
                 <!-- Search -->
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Search for ticket" />
@@ -58,7 +58,7 @@
 
         <div class="flex space-x-6 border-b mb-4">
             @foreach($statusOptions as $key => $label)
-                <a href="{{ route('tickets.index', ['status' => $key] + request()->except('page')) }}"
+                <a href="{{ route('admin.tickets.index', ['status' => $key] + request()->except('page')) }}"
                 class="py-2 text-sm font-semibold border-b-2 {{ $currentStatus === $key ? 'border-red-500 text-red-600' : 'border-transparent text-gray-600 hover:text-red-600 hover:border-red-500' }}">
                     {{ $label }}
                 </a>
@@ -89,7 +89,7 @@
                     <div class="flex items-center space-x-2">
                         <span class="text-sm">{{ $ticket->user->name ?? '-' }}</span>
                     </div>
-                    <a href="{{ route('tickets.show', $ticket->id) }}">Lihat Detail</a>
+                    <a href="{{ route('admin.tickets.show', $ticket->id) }}">Lihat Detail</a>
                 </div>
             </div>
         @empty

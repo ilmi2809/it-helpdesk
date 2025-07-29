@@ -1,6 +1,6 @@
 <div class="w-full lg:w-1/4 bg-white p-6 rounded shadow self-start">
     <h2 class="text-lg font-bold mb-4">Create User</h2>
-    <form action="{{ route('users.store') }}" method="POST" class="space-y-4">
+    <form action="{{ route('admin.users.store') }}" method="POST" class="space-y-4">
         @csrf
 
         <div>

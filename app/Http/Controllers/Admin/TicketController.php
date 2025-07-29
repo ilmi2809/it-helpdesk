@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -42,7 +42,7 @@ class TicketController extends Controller
 
         $tickets = $query->latest()->paginate(10);
 
-        return view('user.tickets.index', compact('tickets'));
+        return view('admin.tickets.index', compact('tickets'));
     }
 
     /**

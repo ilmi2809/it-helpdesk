@@ -18,22 +18,27 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
+
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard');
+            $user = Auth::user();
+
+            return match ($user->role) {
+                'admin' => redirect()->route('admin.dashboard'),
+                'user' => redirect()->route('user.dashboard'),
+                'helpdesk_agent' => redirect()->route('agent.dashboard'),
+                'it_support' => redirect()->route('technician.dashboard'),
+                default => back()->withErrors(['email' => 'Role tidak dikenali']),
+            };
         }
 
         return back()->withErrors(['email' => 'Login gagal']);
     }
 
+
     public function logout()
     {
         Auth::logout();
         return redirect()->route('login');
-    }
-
-    public function dashboard()
-    {
-        return view('dashboard');
     }
 
     public function showProfile()

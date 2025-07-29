@@ -31,7 +31,7 @@
                         <td class="px-4 py-2">{{ $category->name }}</td>
                         <td class="px-4 py-2">{{ $category->description }}</td>
                         <td class="px-4 py-2">
-                            <a href="{{ route('categories.edit', $category->id) }}"
+                            <a href="{{ route('admin.categories.edit', $category->id) }}"
                                class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded">
                                 Edit
                             </a>
@@ -41,7 +41,7 @@
                                 Delete
                             </button>
 
-                            <form id="delete-form-{{ $category->id }}" method="POST" action="{{ route('categories.destroy', $category->id) }}" style="display: none;">
+                            <form id="delete-form-{{ $category->id }}" method="POST" action="{{ route('admin.categories.destroy', $category->id) }}" style="display: none;">
                                 @csrf
                                 @method('DELETE')
                             </form>
@@ -56,7 +56,7 @@
             </table>
         </div>
 
-        @include('category.create')
+        @include('admin.category.create')
 
     </div>
 </div>

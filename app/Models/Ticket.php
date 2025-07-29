@@ -18,11 +18,17 @@ class Ticket extends Model
         'user_id',
         'category_id',
         'department_id',
+        'assignee_id', // ✅ ditambahkan
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function assignee()
+    {
+        return $this->belongsTo(User::class, 'assignee_id'); // ✅ relasi teknisi
     }
 
     public function category()
