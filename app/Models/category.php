@@ -8,6 +8,7 @@ use App\Models\SlaPolicy;
 class Category extends Model
 {
     protected $fillable = ['name', 'description'];
+    
 
     public function slaPolicy()
     {
