@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $technicians = User::with('categories')->where('role', 'it_support')->get();
+        $technicians = User::with('handledCategories')->where('role', 'it_support')->get();
         $otherUsers  = User::where('role', '!=', 'it_support')->get();
         $categories  = Category::all();
 
@@ -47,7 +47,7 @@ class UserController extends Controller
         ]);
 
         if ($role === 'it_support' && $request->has('categories')) {
-            $user->categories()->sync($request->categories);
+            $user->handledCategories()->sync($request->categories);
         }
 
         return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
@@ -56,9 +56,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $categories = Category::all();
-        $selected   = $user->categories->pluck('id')->toArray();
+        $selectedCategories = $user->handledCategories->pluck('id')->toArray();
 
-        return view('admin.users.edit', compact('user', 'categories', 'selected'));
+        return view('admin.users.edit', compact('user', 'categories', 'selectedCategories'));
     }
 
     public function update(Request $request, User $user)
@@ -81,9 +81,9 @@ class UserController extends Controller
         ]);
 
         if ($role === 'it_support') {
-            $user->categories()->sync($request->categories ?? []);
+            $user->handledCategories()->sync($request->categories ?? []);
         } else {
-            $user->categories()->detach();
+            $user->handledCategories()->detach();
         }
 
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
@@ -91,7 +91,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $user->categories()->detach();
+        $user->handledCategories()->detach();
         $user->delete();
 
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');

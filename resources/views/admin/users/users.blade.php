@@ -40,7 +40,15 @@
                                     <td class="px-4 py-2">{{ $user->name }}</td>
                                     <td class="px-4 py-2">{{ $user->email }}</td>
                                     <td class="px-4 py-2 capitalize">{{ $user->role }}</td>
-                                    <td class="px-4 py-2">{{ $user->category?->name ?? '-' }}</td>
+                                    <td class="px-4 py-2">
+                                        @if($user->handledCategories->isNotEmpty())
+                                            @foreach ($user->handledCategories as $category)
+                                                <span>{{ $category->name }}</span>@if (!$loop->last), @endif
+                                            @endforeach
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
                                     <td class="px-4 py-2">
                                         <a href="{{ route('admin.users.edit', $user) }}"
                                            class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-md transition">Edit</a>

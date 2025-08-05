@@ -64,7 +64,7 @@ class TicketController extends Controller
             'category_id' => 'required|exists:categories,id',
             'priority'    => 'required|in:high,medium,low',
             'description' => 'required|string',
-            'location'    => 'nullable|string',
+            'location'    => 'required|string',
             'attachment.*'=> 'nullable|file|max:10240'
         ]);
 

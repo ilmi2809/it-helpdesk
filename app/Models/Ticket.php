@@ -18,7 +18,8 @@ class Ticket extends Model
         'user_id',
         'category_id',
         'department_id',
-        'assignee_id', // ✅ ditambahkan
+        'location',
+        'assignee_id',
     ];
 
     public function user()

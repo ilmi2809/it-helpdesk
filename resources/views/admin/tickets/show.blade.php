@@ -3,7 +3,7 @@
 @section('content')
 <div class="px-6 py-8 max-w-6xl mx-auto">
     <nav class="text-sm text-gray-500 mb-4">
-        <a href="{{ route('tickets.index') }}" class="hover:underline text-red-600">Tiket</a> / Detail Tiket
+        <a href="{{ route('admin.tickets.index') }}" class="hover:underline text-red-600">Tiket</a> / Detail Tiket
     </nav>
 
     <h1 class="text-2xl font-semibold mb-1">Detail Tiket</h1>
@@ -34,6 +34,10 @@
                 <p class="font-semibold">{{ $ticket->category->name ?? '-' }}</p>
             </div>
             <div>
+                <p class="text-gray-500">Lokasi</p>
+                <p class="font-semibold">{{ $ticket->location }}</p>
+            </div>
+            <div class="col-span-2">
                 <p class="text-gray-500">Deskripsi</p>
                 <p class="font-semibold">{{ $ticket->description }}</p>
             </div>
@@ -86,7 +90,7 @@
     <div class="bg-white rounded-md shadow p-6">
         <h2 class="text-md font-bold mb-4">Reply to Ticket</h2>
 
-        <form method="POST" action="{{ route('tickets.reply', $ticket->id) }}">
+        <form method="POST" action="">
             @csrf
             <div class="grid grid-cols-3 gap-4 mb-4 text-sm">
                 <div>

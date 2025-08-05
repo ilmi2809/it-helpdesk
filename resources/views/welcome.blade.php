@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title>Welcome to IT Helpdesk KCIC</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 <body class="bg-gray-100 text-gray-800 font-[Inter]">
     <div class="min-h-screen flex flex-col justify-center items-center text-center px-6">
