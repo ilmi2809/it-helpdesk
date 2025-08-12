@@ -12,7 +12,6 @@ class AdminUserSeeder extends Seeder
     {
         User::updateOrCreate(
             [
-                'id'=> 100,
                 'email' => 'admin@kcic.local'
             ],
             [

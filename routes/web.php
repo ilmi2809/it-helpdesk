@@ -73,6 +73,8 @@ Route::middleware(['auth', CheckRole::class . ':user'])
         Route::get('/tickets', [PublicTicketController::class, 'index'])->name('tickets.index');
         Route::get('/tickets/create', [PublicTicketController::class, 'create'])->name('tickets.create');
         Route::post('/tickets', [PublicTicketController::class, 'store'])->name('tickets.store');
+        Route::get('/api/categories/tree', [\App\Http\Controllers\CategoryController::class, 'tree'])
+        ->name('categories.tree');
     });
 
 /*

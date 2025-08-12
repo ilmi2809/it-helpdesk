@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="p-4">
+<div class="p-1">
     <h1 class="text-2xl font-bold text-gray-800 mb-6">Manage User</h1>
     <div class="flex flex-col lg:flex-row gap-6">
         <div class="w-full lg:w-3/4 bg-white p-6 rounded-xl shadow-md">
@@ -20,7 +20,7 @@
 
             {{-- Technician & IT Support Table --}}
             <div class="mb-10">
-                <h2 class="text-lg font-semibold text-blue-700 mb-3">Technician & IT Support</h2>
+                <h2 class="text-lg font-semibold text-700 mb-3">Technician & IT Support</h2>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-center border border-gray-200">
                         <thead class="bg-gray-100 text-gray-700">

@@ -3,8 +3,8 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<div class="p-6">
-    <h1 class="text-3xl font-bold text-gray-800 mb-8">Admin Dashboard</h1>
+<div class="p-1">
+    <h1 class="text-2xl font-bold text-gray-800 mb-4">Admin Dashboard</h1>
 
     {{-- Summary Cards --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
