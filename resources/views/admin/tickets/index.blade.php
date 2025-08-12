@@ -27,30 +27,6 @@
             </div>
         </form>
 
-        {{-- <div class="flex justify-between items-center mb-4">
-            <div></div>
-            <div class="flex space-x-2">
-                <select class="border rounded px-2 py-1">
-                    <option>Select Priority</option>
-                    <option value="new">New Tickets</option>
-                    <option value="on-going">On-Going Tickets</option>
-                    <option value="resolved">Resolved Tickets</option>
-                </select>
-                <select class="border rounded px-2 py-1">
-                    <option>This Week</option>
-                    <option>This Month</option>
-                </select>
-            </div>
-        </div> --}}
-
-        {{-- <div class="flex space-x-6 border-b mb-4">
-            @foreach(['All Tickets', 'New', 'On-Going', 'Resolved'] as $status)
-                <button class="py-2 text-sm font-semibold border-b-2 border-red-500 text-red-600">
-                    {{ $status }}
-                </button>
-            @endforeach
-        </div> --}}
-
         @php
         $currentStatus = request('status', 'all');
         $statusOptions = ['all' => 'All Tickets', 'new' => 'New', 'on-going' => 'On-Going', 'resolved' => 'Resolved'];
@@ -64,7 +40,6 @@
                 </a>
             @endforeach
         </div>
-
 
         @forelse($tickets as $ticket)
             <div class="border rounded-lg p-4 mb-4 shadow-sm">

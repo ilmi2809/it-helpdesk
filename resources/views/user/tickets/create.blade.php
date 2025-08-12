@@ -23,15 +23,50 @@
         </div>
 
         {{-- Category --}}
-        <div>
+        <div x-data="categoryPicker()" x-init="init('{{ route('user.categories.tree') }}')" class="relative">
             <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-            <select name="category_id" class="w-full border px-3 py-2 rounded" required>
-                <option value="">Choose Category</option>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-        </div>
+
+            {{-- value yang dikirim ke server --}}
+            <input type="hidden" name="category_id" x-model="selected.id" required>
+
+            {{-- trigger dropdown --}}
+            <div @click="open = !open"
+                 class="w-full border px-3 py-2 rounded cursor-pointer bg-white flex justify-between items-center">
+              <span x-text="selected.text || 'Choose Category'"></span>
+              <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.08 1.04l-4.24 4.25a.75.75 0 01-1.08 0l-4.25-4.25a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+              </svg>
+            </div>
+
+            {{-- panel dropdown --}}
+            <div x-show="open" @click.outside="open=false"
+                 class="absolute z-50 bg-white w-full border mt-1 rounded shadow p-3 max-h-72 overflow-auto text-sm">
+
+              <ul class="space-y-2">
+                <template x-for="p in filtered(nodes)" :key="p.id">
+                  <li>
+                    <div class="flex items-center">
+                      <button type="button" class="mr-2 text-gray-600"
+                              @click="toggle(p.id)" x-text="expanded[p.id] ? '▾' : '▸'"></button>
+
+                      <span class="font-semibold"
+                             x-text="p.text"></span>
+                    </div>
+
+                    <ul x-show="expanded[p.id]" class="ml-6 mt-1">
+                      <template x-for="c in (p.children || [])" :key="c.id">
+                        <li class="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded"
+                            @click="select(c)" x-text="c.text"></li>
+                      </template>
+                      <template x-if="!p.children || p.children.length===0">
+                        <li class="text-gray-400 italic px-2 py-1">No sub‑category</li>
+                      </template>
+                    </ul>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
 
         {{-- Priority --}}
         <div>
@@ -166,4 +201,50 @@
         </div>
     </form>
 </div>
+
+@push('scripts')
+<script>
+function categoryPicker(){
+  return {
+    open: false,
+    q: '',
+    nodes: [],
+    expanded: {},
+    selected: { id:'', text:'' },
+
+    async init(url){
+      const res = await fetch(url);
+      const raw = await res.json();
+      // normalisasi: [{id,text,children:[...] }]
+      this.nodes = raw.map(p => ({
+        id: String(p.id),
+        text: p.text,
+        children: (p.children||[]).map(c => ({
+          id: String(c.id),
+          text: c.text,
+          children: c.children || []
+        }))
+      }));
+    },
+
+    toggle(id){ this.expanded[id] = !this.expanded[id]; },
+    select(node){ this.selected = { id: node.id, text: node.text }; this.open = false; },
+    clear(){ this.selected = { id:'', text:'' }; },
+
+    filtered(items){
+      if(!this.q) return items;
+      const q = this.q.toLowerCase();
+      return items.map(p => {
+        const hitParent = (p.text||'').toLowerCase().includes(q);
+        const childHits = (p.children||[]).filter(c => (c.text||'').toLowerCase().includes(q));
+        if (hitParent) return p; // tampilkan semua anak
+        if (childHits.length) return {...p, children: childHits};
+        return null;
+      }).filter(Boolean);
+    }
+  }
+}
+</script>
+@endpush
+
 @endsection

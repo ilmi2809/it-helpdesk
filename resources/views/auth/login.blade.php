@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-50 font-[Inter]">
     <div class="min-h-screen grid grid-cols-1 lg:grid-cols-12">
-        
+
         <!-- Left side image (8/12) -->
         <div class="hidden lg:block lg:col-span-7 xl:col-span-8">
             <img src="/images/whoosh.jpg" alt="Whoosh Image" class="object-cover w-full h-full">

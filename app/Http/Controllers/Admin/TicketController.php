@@ -51,6 +51,7 @@ class TicketController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $ticket->category_label = Category::find($request->category_id)->full_name;
         return view('user.tickets.create', compact('categories'));
     }
 

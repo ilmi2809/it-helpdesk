@@ -49,5 +49,13 @@ class Category extends Model
     {
         return $this->hasMany(Category::class,'parent_id');
     }
+
+    public function getFullNameAttribute()
+    {
+        if ($this->parent) {
+            return $this->parent->name . ' - ' . $this->name;
+        }
+        return $this->name;
+    }
 }
 

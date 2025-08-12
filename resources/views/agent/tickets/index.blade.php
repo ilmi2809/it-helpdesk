@@ -36,7 +36,7 @@
             </div>
             <div class="text-end">
                 <small>{{ $ticket->created_at->format('d M Y H:i') }}</small><br>
-                <a href="{{ route('tickets.show', $ticket->id) }}" class="btn btn-link text-danger p-0">Open Ticket</a>
+                <a href="{{ route('agent.tickets.show', $ticket->id) }}" class="btn btn-link text-danger p-0">Open Ticket</a>
             </div>
         </div>
     </div>
